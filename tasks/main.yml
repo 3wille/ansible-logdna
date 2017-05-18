@@ -9,10 +9,11 @@
   template:
     src: logdna.conf.j2
     dest: /etc/logdna.conf
+  notify: service | logdna-agent | restarted
 
 - name: Configure | service | logdna-agent
   become: true
   service:
     name: logdna-agent
     enabled: yes
-  notify: service | logdna-agent | started
+    state: started
